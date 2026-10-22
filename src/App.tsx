@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useScroll,
   useTransform,
@@ -18,6 +19,10 @@ import {
   Cpu,
   Workflow,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  X,
 } from "lucide-react";
 
 /* ----------------------------- Reusable: FadeIn ---------------------------- */
@@ -565,18 +570,64 @@ function SkillsSection() {
 }
 
 /* ------------------------------ ProjectsSection ---------------------------- */
-const projects = [
+type Screenshot = {
+  src: string;
+  title: string;
+  caption: string;
+};
+
+type Project = {
+  number: string;
+  name: string;
+  category: string;
+  desc: string;
+  tools: string;
+  live: string;
+  isMobile?: boolean;
+  screenshots?: Screenshot[];
+  images: string[];
+};
+
+const projects: Project[] = [
   {
     number: "01",
     name: "RomClub",
     category: "Android Application",
     desc: "A dedicated Android platform designed to centralize information, modules, and recovery guides for custom ROM enthusiasts and power users.",
     tools: "Android Studio, Java, XML, Firebase",
-    live: "https://github.com/vasimsamtani",
+    live: "https://github.com/vasimsamtani/RomClub",
+    isMobile: true,
+    screenshots: [
+      {
+        src: "/projects/romclub/modules.jpg",
+        title: "Magisk & KernelSU Modules",
+        caption: "Curated module repository with Play Integrity fixes, audio mods & 1-tap zip downloads.",
+      },
+      {
+        src: "/projects/romclub/select-device.jpg",
+        title: "Device Detection & Selector",
+        caption: "Auto-detects active hardware and filters codenames across Xiaomi, Pixel, and OnePlus.",
+      },
+      {
+        src: "/projects/romclub/guides.jpg",
+        title: "Flashing Guides & Tutorials",
+        caption: "Safety-tested protocols for bootloader unlock, custom recovery (TWRP/OrangeFox), and unbricking.",
+      },
+      {
+        src: "/projects/romclub/unlock-bootloader.jpg",
+        title: "Step-by-Step Instructions",
+        caption: "Clear tutorial steps with critical data-loss warnings and essential fastboot commands.",
+      },
+      {
+        src: "/projects/romclub/about.jpg",
+        title: "Developer & Community Hub",
+        caption: "RomClub v2.0 Android Modder Edition crafted by Vasim, featuring feedback and community channels.",
+      },
+    ],
     images: [
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85",
+      "/projects/romclub/modules.jpg",
+      "/projects/romclub/select-device.jpg",
+      "/projects/romclub/guides.jpg",
     ],
   },
   {
@@ -599,11 +650,14 @@ function ProjectCard({
   index,
   totalCards,
 }: {
-  project: (typeof projects)[number];
+  project: Project;
   index: number;
   totalCards: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [selectedModalIndex, setSelectedModalIndex] = useState<number | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -611,6 +665,32 @@ function ProjectCard({
 
   const targetScale = 1 - (totalCards - 1 - index) * 0.02;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -240 : 240;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    if (selectedModalIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedModalIndex(null);
+      } else if (e.key === "ArrowLeft" && project.screenshots) {
+        setSelectedModalIndex(
+          (prev) => (prev! - 1 + project.screenshots!.length) % project.screenshots!.length
+        );
+      } else if (e.key === "ArrowRight" && project.screenshots) {
+        setSelectedModalIndex(
+          (prev) => (prev! + 1) % project.screenshots!.length
+        );
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedModalIndex, project.screenshots]);
 
   return (
     <div ref={ref} className="min-h-[75vh] relative" style={{ top: `${index * 24}px` }}>
@@ -652,30 +732,213 @@ function ProjectCard({
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="md:col-span-2 flex flex-col gap-4">
-            <img
-              src={project.images[0]}
-              alt={`${project.name}-1`}
-              className="w-full object-cover rounded-2xl h-44 sm:h-52"
-              loading="lazy"
-            />
-            <img
-              src={project.images[1]}
-              alt={`${project.name}-2`}
-              className="w-full object-cover rounded-2xl h-48 sm:h-64"
-              loading="lazy"
-            />
+        {/* If Mobile project with screenshots, display phone mockup showcase */}
+        {project.isMobile && project.screenshots ? (
+          <div>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                  <Smartphone size={13} />
+                  Mobile App UI
+                </span>
+                <span className="text-xs text-[#D7E2EA]/50 hidden sm:inline">
+                  {project.screenshots.length} App Screens • Click any to view full size
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("left")}
+                  className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("right")}
+                  className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+
+            <div
+              ref={scrollRef}
+              className="flex gap-4 sm:gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar scroll-smooth"
+            >
+              {project.screenshots.map((screen, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedModalIndex(idx)}
+                  className="group relative flex-shrink-0 snap-start cursor-pointer w-[185px] sm:w-[205px]"
+                >
+                  {/* Phone Mockup Frame */}
+                  <div className="relative rounded-[2.2rem] p-2 bg-[#18181c] border-2 border-white/10 group-hover:border-blue-500/60 shadow-xl group-hover:shadow-[0_12px_30px_-5px_rgba(59,130,246,0.3)] transition-all duration-300 group-hover:-translate-y-1">
+                    {/* Speaker & camera notch */}
+                    <div className="w-14 h-3 bg-black/70 rounded-full mx-auto mb-2 flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-[#111] border border-white/15" />
+                    </div>
+
+                    {/* Screen Display */}
+                    <div className="relative rounded-[1.6rem] overflow-hidden bg-black aspect-[230/512]">
+                      <img
+                        src={screen.src}
+                        alt={screen.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-blue-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                        <span className="p-2 rounded-full bg-black/70 border border-white/20 text-white shadow-lg flex items-center gap-1.5 text-xs font-medium">
+                          <ZoomIn size={14} /> View
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom home bar indicator */}
+                    <div className="w-12 h-1 bg-white/20 rounded-full mx-auto mt-2" />
+                  </div>
+
+                  {/* Title & Caption */}
+                  <div className="mt-3 px-1 text-center">
+                    <h4 className="text-xs sm:text-sm font-semibold text-white tracking-wide group-hover:text-blue-400 transition-colors">
+                      {screen.title}
+                    </h4>
+                    <p className="text-[11px] text-[#D7E2EA]/60 font-light mt-1 line-clamp-2 leading-relaxed">
+                      {screen.caption}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="md:col-span-3">
-            <img
-              src={project.images[2]}
-              alt={`${project.name}-3`}
-              className="w-full h-full object-cover rounded-2xl min-h-[280px] md:min-h-[460px]"
-              loading="lazy"
-            />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="md:col-span-2 flex flex-col gap-4">
+              <img
+                src={project.images[0]}
+                alt={`${project.name}-1`}
+                className="w-full object-cover rounded-2xl h-44 sm:h-52"
+                loading="lazy"
+              />
+              <img
+                src={project.images[1]}
+                alt={`${project.name}-2`}
+                className="w-full object-cover rounded-2xl h-48 sm:h-64"
+                loading="lazy"
+              />
+            </div>
+            <div className="md:col-span-3">
+              <img
+                src={project.images[2]}
+                alt={`${project.name}-3`}
+                className="w-full h-full object-cover rounded-2xl min-h-[280px] md:min-h-[460px]"
+                loading="lazy"
+              />
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {selectedModalIndex !== null && project.screenshots && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+              onClick={() => setSelectedModalIndex(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative max-w-md w-full bg-[#121216] border border-white/20 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col items-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedModalIndex(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition"
+                  aria-label="Close modal"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* Counter & GitHub link */}
+                <div className="w-full flex items-center justify-between pr-10 mb-3">
+                  <span className="text-xs uppercase tracking-wider font-semibold text-blue-400">
+                    Screen {selectedModalIndex + 1} of {project.screenshots.length}
+                  </span>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-white/60 hover:text-white inline-flex items-center gap-1 transition"
+                  >
+                    GitHub Repo <ArrowUpRight size={12} />
+                  </a>
+                </div>
+
+                {/* Big Phone Mockup */}
+                <div className="relative rounded-[2.4rem] p-2 bg-[#1e1e24] border-2 border-white/20 shadow-2xl my-2 max-w-[240px] sm:max-w-[260px] w-full">
+                  <div className="w-14 h-2.5 bg-black/80 rounded-full mx-auto mb-2 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-[#111] border border-white/15" />
+                  </div>
+                  <div className="relative rounded-[1.8rem] overflow-hidden bg-black aspect-[230/512]">
+                    <img
+                      src={project.screenshots[selectedModalIndex].src}
+                      alt={project.screenshots[selectedModalIndex].title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="w-14 h-1 bg-white/20 rounded-full mx-auto mt-2" />
+                </div>
+
+                {/* Screen Details */}
+                <div className="text-center mt-3 max-w-xs">
+                  <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wide">
+                    {project.screenshots[selectedModalIndex].title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#D7E2EA]/75 font-light mt-1 leading-relaxed">
+                    {project.screenshots[selectedModalIndex].caption}
+                  </p>
+                </div>
+
+                {/* Navigation controls */}
+                <div className="flex items-center gap-3 mt-4">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedModalIndex(
+                        (prev) => (prev! - 1 + project.screenshots!.length) % project.screenshots!.length
+                      )
+                    }
+                    className="px-4 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white text-xs uppercase tracking-wider font-medium flex items-center gap-1.5 transition"
+                  >
+                    <ChevronLeft size={14} /> Previous
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedModalIndex(
+                        (prev) => (prev! + 1) % project.screenshots!.length
+                      )
+                    }
+                    className="px-4 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white text-xs uppercase tracking-wider font-medium flex items-center gap-1.5 transition"
+                  >
+                    Next <ChevronRight size={14} />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
