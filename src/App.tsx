@@ -632,15 +632,53 @@ const projects: Project[] = [
   },
   {
     number: "02",
-    name: "The EST Café",
-    category: "Android & Hospitality",
-    desc: "An intuitive mobile café app showcasing digital menus, ambiance previews, customer reservations, and brand engagement.",
-    tools: "Android Studio, Java, XML, Firebase",
-    live: "https://github.com/vasimsamtani",
+    name: "VeilChat",
+    category: "Flutter & Cybersecurity",
+    desc: "Zero-leakage, privacy-hardened WhatsApp client and security enclave featuring duress cloaking, in-feed shimmer redaction, and a local WebSocket bridge daemon.",
+    tools: "Flutter, Dart, Node.js, Baileys, WebSocket, AES-256",
+    live: "https://github.com/vasimsamtani/VeilChat",
+    isMobile: true,
+    screenshots: [
+      {
+        src: "/projects/veilchat/00_Splash_Screen.png",
+        title: "Liquid Glass Brand Launch",
+        caption: "Cyberpunk aesthetic launch screen with cryptographic key verification and security enclave initialization.",
+      },
+      {
+        src: "/projects/veilchat/01_WhatsApp_Bridge_Setup.png",
+        title: "WhatsApp Bridge & QR Pairing",
+        caption: "Direct multi-device QR pairing over local Node.js WebSocket daemon with animated laser scanning.",
+      },
+      {
+        src: "/projects/veilchat/02_Unified_Veiled_Chat_Feed.png",
+        title: "Unified Veiled Chat Feed",
+        caption: "In-feed Shimmer Redaction disguises preview text to prevent shoulder-surfing and visual eavesdropping.",
+      },
+      {
+        src: "/projects/veilchat/03_Biometric_Keypad_Modal.png",
+        title: "Dual-PIN & Biometric Keypad",
+        caption: "Secure tactile keypad with biometric unlock, randomized feedback, and automatic lockout defense.",
+      },
+      {
+        src: "/projects/veilchat/04_Unlocked_Conversation_View.png",
+        title: "Real Confidential Conversation",
+        caption: "Decrypted chat stream featuring live radial auto-lock countdown timer and emergency panic lock wipe.",
+      },
+      {
+        src: "/projects/veilchat/05_Decoy_Mode_Chat.png",
+        title: "Decoy Mode Duress Protection",
+        caption: "Alternate PIN unlocks plausible, benign dummy conversation with zero forensic residue of confidential data.",
+      },
+      {
+        src: "/projects/veilchat/06_Privacy_Camouflage_Settings.png",
+        title: "Stealth & Camouflage Controls",
+        caption: "Configure notification camouflage, ghost presence mode, zero-telemetry vault, and auto-lock thresholds.",
+      },
+    ],
     images: [
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-      "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85",
+      "/projects/veilchat/02_Unified_Veiled_Chat_Feed.png",
+      "/projects/veilchat/04_Unlocked_Conversation_View.png",
+      "/projects/veilchat/01_WhatsApp_Bridge_Setup.png",
     ],
   },
 ];
