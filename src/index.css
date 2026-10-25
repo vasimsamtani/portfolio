@@ -15,13 +15,18 @@ html {
   scroll-padding-top: 5rem;
 }
 
-html,
-body,
-#root {
+body {
   background: #0c0c0c;
   color: #D7E2EA;
   font-family: "Kanit", sans-serif;
   overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+#root {
+  background: #0c0c0c;
+  min-height: 100vh;
 }
 
 .hero-heading {

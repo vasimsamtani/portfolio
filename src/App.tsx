@@ -130,6 +130,34 @@ function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    // Small delay ensures the menu collapse and layout settle before scrolling
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        try {
+          window.history.pushState(null, "", `#${targetId}`);
+        } catch {}
+      }
+    }, 60);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    try {
+      window.history.pushState(null, "", window.location.pathname);
+    } catch {}
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -182,8 +210,8 @@ function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between">
         <a
-          href="#"
-          onClick={() => setMobileMenuOpen(false)}
+          href="/"
+          onClick={handleLogoClick}
           className="text-base sm:text-lg font-bold tracking-wider uppercase text-white hover:text-blue-400 transition-colors"
         >
           Vasim<span className="text-blue-500">.</span>Dev
@@ -191,22 +219,46 @@ function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-7 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/80">
-          <a href="#about" className="hover:text-white transition-colors">
+          <a
+            href="#about"
+            onClick={(e) => handleNavClick(e, "about")}
+            className="hover:text-white transition-colors"
+          >
             About
           </a>
-          <a href="#experience" className="hover:text-white transition-colors">
+          <a
+            href="#experience"
+            onClick={(e) => handleNavClick(e, "experience")}
+            className="hover:text-white transition-colors"
+          >
             Experience
           </a>
-          <a href="#skills" className="hover:text-white transition-colors">
+          <a
+            href="#skills"
+            onClick={(e) => handleNavClick(e, "skills")}
+            className="hover:text-white transition-colors"
+          >
             Skills
           </a>
-          <a href="#projects" className="hover:text-white transition-colors">
+          <a
+            href="#projects"
+            onClick={(e) => handleNavClick(e, "projects")}
+            className="hover:text-white transition-colors"
+          >
             Projects
           </a>
-          <a href="#education" className="hover:text-white transition-colors">
+          <a
+            href="#education"
+            onClick={(e) => handleNavClick(e, "education")}
+            className="hover:text-white transition-colors"
+          >
             Education
           </a>
-          <a href="#contact" className="hover:text-white transition-colors">
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
+            className="hover:text-white transition-colors"
+          >
             Contact
           </a>
         </nav>
@@ -220,7 +272,7 @@ function Navbar() {
           </a>
           <a
             href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={(e) => handleNavClick(e, "contact")}
             className="inline-flex items-center gap-1 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md shadow-blue-500/20"
           >
             Get In Touch
@@ -246,56 +298,65 @@ function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden border-t border-white/10 bg-[#0C0C0C]/95 backdrop-blur-xl px-6 py-4"
+            className="md:hidden overflow-hidden border-t border-white/10 bg-[#0C0C0C]/95 backdrop-blur-xl px-5 py-4"
           >
-            <nav className="flex flex-col gap-3 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/85">
+            <nav className="flex flex-col gap-1 text-sm uppercase tracking-wider font-semibold text-[#D7E2EA]/90">
               <a
                 href="#about"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "about")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                About
+                <span>About</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
               <a
                 href="#experience"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "experience")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                Experience
+                <span>Experience</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
               <a
                 href="#skills"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "skills")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                Skills
+                <span>Skills</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
               <a
                 href="#projects"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "projects")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                Projects
+                <span>Projects</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
               <a
                 href="#education"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "education")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                Education
+                <span>Education</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
               <a
                 href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1 hover:text-white transition-colors"
+                onClick={(e) => handleNavClick(e, "contact")}
+                className="py-3 px-3 rounded-xl hover:bg-white/10 active:bg-white/15 hover:text-white transition-colors flex items-center justify-between"
               >
-                Contact
+                <span>Contact</span>
+                <ChevronRight size={16} className="text-white/30" />
               </a>
+
               <a
                 href="/resume.html"
-                className="inline-flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/5 border border-white/15 text-white hover:bg-white/10 transition-all text-center"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-3 w-full py-3.5 px-4 rounded-xl text-center text-xs font-semibold uppercase tracking-wider bg-white/5 border border-white/15 text-white hover:bg-white/10 active:bg-white/15 transition-all flex items-center justify-center gap-2"
               >
-                View Full Resume
+                <span>View Full Resume</span>
+                <ArrowUpRight size={14} className="text-white/60" />
               </a>
             </nav>
           </motion.div>
@@ -439,7 +500,7 @@ function TechTicker() {
 /* ------------------------------- AboutSection ------------------------------ */
 function AboutSection() {
   return (
-    <section id="about" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto relative">
+    <section id="about" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto relative scroll-mt-20 sm:scroll-mt-24">
       <FadeIn y={30}>
         <div className="text-center mb-16">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
@@ -528,7 +589,7 @@ function AboutSection() {
 /* ---------------------------- ExperienceSection ---------------------------- */
 function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto">
+    <section id="experience" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24">
       <FadeIn y={30}>
         <div className="text-center mb-16">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
@@ -687,7 +748,7 @@ const skillCategories = [
 
 function SkillsSection() {
   return (
-    <section id="skills" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto">
+    <section id="skills" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24">
       <FadeIn y={30}>
         <div className="text-center mb-16">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
@@ -1158,7 +1219,7 @@ function ProjectCard({
 
 function ProjectsSection() {
   return (
-    <section id="projects" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto">
+    <section id="projects" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24">
       <FadeIn y={30}>
         <div className="text-center mb-16">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
@@ -1221,7 +1282,7 @@ function EducationSection() {
   ];
 
   return (
-    <section id="education" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto">
+    <section id="education" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24">
       <FadeIn y={30}>
         <div className="text-center mb-16">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
