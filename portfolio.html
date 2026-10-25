@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vasim Samtani — AI-Augmented Android / Flutter Developer | UI/UX Designer | AI Automation</title>
+  <meta name="description" content="Portfolio of Vasim Samtani — AI-Augmented Android & Flutter Developer, UI/UX Designer, Zoho CRM & Deluge specialist, and AI Automation Engineer." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --card-bg: #121216;
+      --card-inner: #18181f;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(59, 130, 246, 0.4);
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.15);
+      --purple: #8b5cf6;
+      --emerald: #10b981;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(10, 10, 12, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .nav-brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-contact:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    .btn-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-resume:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      padding-top: 140px;
+      padding-bottom: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #34d399;
+      box-shadow: 0 0 10px #34d399;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .hero-role {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      color: #60a5fa;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 36px auto;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .hero-desc strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn-main {
+      padding: 14px 34px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-main-primary {
+      background: linear-gradient(135deg, #2563eb, #6366f1, #9333ea);
+      color: #ffffff;
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-main-primary:hover {
+      box-shadow: 0 14px 30px -5px rgba(99, 102, 241, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-main-outline {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-main-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Tech Ticker */
+    .ticker-section {
+      padding: 24px 0;
+      background: #0d0d11;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .ticker-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .ticker-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .ticker-content-left {
+      display: flex;
+      gap: 14px;
+      animation: tickerLeft 32s linear infinite;
+    }
+
+    .ticker-content-right {
+      display: flex;
+      gap: 14px;
+      animation: tickerRight 32s linear infinite;
+    }
+
+    @keyframes tickerLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes tickerRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .ticker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ticker-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .ticker-pill .dot.purple {
+      background: var(--purple);
+    }
+
+    /* Section Global Headers */
+    .section-padding {
+      padding: 96px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1.05;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-bio {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .about-bio p strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .highlight-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      transition: all 0.2s ease;
+    }
+
+    .highlight-card:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .highlight-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .highlight-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .highlight-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Experience Section */
+    .exp-container {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .exp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+    }
+
+    .exp-role-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 1rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .exp-date-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .exp-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .exp-bullet-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .exp-bullet-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .exp-bullet-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .exp-tools {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .exp-tools-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tool-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #93c5fd;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+
+    /* Skills Section (7 Categories matching Resume) */
+    .skills-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .skill-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .skill-index {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: rgba(59, 130, 246, 0.6);
+      line-height: 1;
+    }
+
+    .skill-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      letter-spacing: 0.03em;
+    }
+
+    /* Projects Section (Untouched project details as requested) */
+    .project-card {
+      background: #111115;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px;
+      margin-bottom: 48px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .project-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .project-num-title {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .project-num {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: rgba(59, 130, 246, 0.7);
+      line-height: 1;
+    }
+
+    .project-cat {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #60a5fa;
+    }
+
+    .project-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin: 4px 0 8px 0;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .project-tools {
+      margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: all 0.2s ease;
+    }
+
+    .btn-github:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Carousel header and controls */
+    .carousel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .carousel-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .carousel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .carousel-hint {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    .carousel-nav-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .carousel-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Horizontal scroll row of mockups */
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 4px 20px 4px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      height: 6px;
+    }
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+    }
+
+    /* Phone Mockup */
+    .phone-item {
+      flex: 0 0 190px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .phone-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .phone-frame {
+      background: #18181e;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      border-radius: 34px;
+      padding: 8px;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.2s ease;
+    }
+
+    .phone-item:hover .phone-frame {
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow: 0 16px 35px rgba(59, 130, 246, 0.2);
+    }
+
+    .phone-notch {
+      width: 48px;
+      height: 10px;
+      background: #000000;
+      border-radius: 9999px;
+      margin: 0 auto 6px auto;
+    }
+
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 9 / 19.5;
+      background: #000000;
+      position: relative;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .phone-screen-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 58, 138, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .phone-item:hover .phone-screen-overlay {
+      opacity: 1;
+    }
+
+    .phone-zoom-pill {
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+
+    .phone-bar {
+      width: 40px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      margin: 6px auto 0 auto;
+    }
+
+    .phone-caption {
+      text-align: center;
+      margin-top: 10px;
+      padding: 0 4px;
+    }
+
+    .phone-caption-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .phone-caption-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Education Section (New Addition) */
+    .edu-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .edu-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .edu-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .edu-level-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+    }
+
+    .edu-score-badge {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+
+    .edu-degree {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .edu-institution {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Languages Section */
+    .languages-wrapper {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      text-align: center;
+      max-width: 760px;
+      margin: 40px auto 0 auto;
+    }
+
+    .lang-pills {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .lang-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #38bdf8;
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(10, 10, 12, 0.9) 100%);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px 32px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-title {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .contact-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 36px auto;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .contact-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-links-row a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+
+    .contact-links-row a:hover {
+      color: #ffffff;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      background: #08080a;
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Native Modal Dialog */
+    dialog.modal-dialog {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background: #141419;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 24px;
+      max-width: 420px;
+      width: 90%;
+      color: #ffffff;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+      outline: none;
+    }
+
+    dialog.modal-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .modal-phone {
+      max-width: 250px;
+      margin: 10px auto;
+      background: #1e1e26;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 36px;
+      padding: 8px;
+    }
+
+    .modal-phone-screen {
+      border-radius: 26px;
+      overflow: hidden;
+      aspect-ratio: 9 / 19.5;
+      background: #000;
+    }
+
+    .modal-phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-caption {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .modal-caption h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .modal-caption p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .modal-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .modal-nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.15s;
+    }
+
+    .modal-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-grid {
+        grid-template-columns: 1fr;
+      }
+      .edu-card-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .about-cards {
+        grid-template-columns: 1fr;
+      }
+      .skills-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-container {
+        padding: 24px;
+      }
+      .project-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="#" class="nav-brand">Vasim<span>.</span>Dev</a>
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="resume.html" class="btn-resume">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          Resume
+        </a>
+        <a href="#contact" class="btn-contact">Get In Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="badge-status">
+          <span class="badge-dot"></span>
+          Available for New Roles &amp; Opportunities
+        </div>
+
+        <h1 class="hero-title">Vasim Samtani</h1>
+
+        <div class="hero-role">
+          AI-Augmented Android / Flutter Developer | UI/UX Designer | AI Automation
+        </div>
+
+        <p class="hero-desc">
+          Android developer and UI/UX designer with hands-on experience in <strong>mobile application development</strong>, <strong>Zoho CRM automation</strong>, and <strong>AI workflow systems</strong>. Builds native Android apps in Java with Firebase and cross-platform apps in Flutter, designs user-centred interfaces in Figma, and works in an <strong>AI-augmented workflow</strong> &mdash; utilizing AI tools for planning, development, and automation while personally reviewing, testing, and refining the result.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-main btn-main-primary">
+            Explore Projects
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a href="resume.html" class="btn-main btn-main-outline">
+            View / Print Resume
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </a>
+          <a href="#contact" class="btn-main btn-main-outline">
+            Contact Me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Ticker -->
+    <div class="ticker-section" aria-hidden="true">
+      <div class="ticker-row">
+        <div class="ticker-content-left">
+          <span class="ticker-pill"><span class="dot"></span>Android Studio</span>
+          <span class="ticker-pill"><span class="dot"></span>Java</span>
+          <span class="ticker-pill"><span class="dot"></span>Kotlin</span>
+          <span class="ticker-pill"><span class="dot"></span>Flutter &amp; Dart</span>
+          <span class="ticker-pill"><span class="dot"></span>XML Layouts</span>
+          <span class="ticker-pill"><span class="dot"></span>Firebase</span>
+          <span class="ticker-pill"><span class="dot"></span>REST APIs</span>
+          <span class="ticker-pill"><span class="dot"></span>Node.js</span>
+          <span class="ticker-pill"><span class="dot"></span>WebSocket</span>
+          <span class="ticker-pill"><span class="dot"></span>Material Design</span>
+          <!-- Duplicate for seamless scroll -->
+          <span class="ticker-pill"><span class="dot"></span>Android Studio</span>
+          <span class="ticker-pill"><span class="dot"></span>Java</span>
+          <span class="ticker-pill"><span class="dot"></span>Kotlin</span>
+          <span class="ticker-pill"><span class="dot"></span>Flutter &amp; Dart</span>
+          <span class="ticker-pill"><span class="dot"></span>XML Layouts</span>
+          <span class="ticker-pill"><span class="dot"></span>Firebase</span>
+          <span class="ticker-pill"><span class="dot"></span>REST APIs</span>
+          <span class="ticker-pill"><span class="dot"></span>Node.js</span>
+          <span class="ticker-pill"><span class="dot"></span>WebSocket</span>
+          <span class="ticker-pill"><span class="dot"></span>Material Design</span>
+        </div>
+      </div>
+      <div class="ticker-row">
+        <div class="ticker-content-right">
+          <span class="ticker-pill"><span class="dot purple"></span>UI/UX Design</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Figma</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Framer</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Canva</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Zoho CRM</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Deluge Scripting</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Workflow Automation</span>
+          <span class="ticker-pill"><span class="dot purple"></span>AI Automation Tools</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Git &amp; GitHub</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Blender &amp; Unity</span>
+          <!-- Duplicate for seamless scroll -->
+          <span class="ticker-pill"><span class="dot purple"></span>UI/UX Design</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Figma</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Framer</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Canva</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Zoho CRM</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Deluge Scripting</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Workflow Automation</span>
+          <span class="ticker-pill"><span class="dot purple"></span>AI Automation Tools</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Git &amp; GitHub</span>
+          <span class="ticker-pill"><span class="dot purple"></span>Blender &amp; Unity</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Background &amp; Profile</p>
+          <h2 class="section-title">About Me</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-bio">
+            <p>
+              I am an <strong>MCA graduate from GLS University, Ahmedabad (Sem 4: 64%)</strong> with hands-on experience across native Android mobile engineering, cross-platform Flutter development, business automation, and user interface design.
+            </p>
+            <p>
+              In <strong>February 2026</strong>, I completed a 4-month industry internship at <strong>Tectrionix (Ahmedabad)</strong> as a UI/UX Designer &amp; Zoho CRM Intern. There, I designed responsive interfaces in Figma, configured custom Zoho CRM modules with Deluge scripting, and deployed modern AI automation tools to accelerate team productivity.
+            </p>
+            <p>
+              I actively build in an <strong>AI-augmented workflow</strong>: leveraging cutting-edge AI systems for rapid planning, architecture, and pipeline automations, while personally reviewing, rigorously testing, and engineering every line of code to maintain top-tier reliability and security.
+            </p>
+          </div>
+
+          <div class="about-cards">
+            <div class="highlight-card">
+              <div class="highlight-icon" style="background: rgba(59, 130, 246, 0.1); color: #60a5fa;">🎓</div>
+              <h4>MCA Graduate</h4>
+              <p>GLS University, Ahmedabad (Sem 4: 64%). Solid software engineering foundation.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon" style="background: rgba(99, 102, 241, 0.1); color: #818cf8;">💼</div>
+              <h4>Tectrionix Intern</h4>
+              <p>Completed 4-month internship in Feb 2026 focusing on UI/UX, Zoho CRM &amp; AI tools.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon" style="background: rgba(16, 185, 129, 0.1); color: #34d399;">📱</div>
+              <h4>Android &amp; Flutter</h4>
+              <p>Native Java/XML Android apps with Firebase and cross-platform Flutter security enclaves.</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon" style="background: rgba(245, 158, 11, 0.1); color: #fbbf24;">⚡</div>
+              <h4>AI-Augmented</h4>
+              <p>AI tools, prompt pipelines, Deluge scripting, and efficient automation workflows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section (Updated with Resume Details) -->
+    <section class="section-padding" id="experience" style="background: #0c0c10;">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Professional Track Record</p>
+          <h2 class="section-title">Work Experience</h2>
+        </div>
+
+        <div class="exp-container">
+          <div class="exp-header">
+            <div>
+              <div class="exp-badge">Completed Internship &bull; 4 Months</div>
+              <h3 class="exp-role-title">UI/UX Designer (Figma) &amp; Zoho CRM Intern</h3>
+              <p class="exp-company">Tectrionix &bull; Ahmedabad, Gujarat, India</p>
+            </div>
+            <div class="exp-date-pill">Completed Feb 2026</div>
+          </div>
+
+          <div class="exp-grid">
+            <div class="exp-item">
+              <div class="exp-bullet-icon">🎨</div>
+              <div class="exp-bullet-text">
+                <h4>UI/UX Interfaces &amp; Responsive Layouts</h4>
+                <p>Designed user-friendly web and mobile interfaces, wireframes, prototypes and responsive layouts using Figma.</p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-bullet-icon">⚙️</div>
+              <div class="exp-bullet-text">
+                <h4>Zoho CRM Customization &amp; Deluge</h4>
+                <p>Customised Zoho CRM modules, workflows, fields, layouts and automation to support business requirements, including Deluge scripting.</p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-bullet-icon">🤖</div>
+              <div class="exp-bullet-text">
+                <h4>AI Automation Tools &amp; Productivity</h4>
+                <p>Worked with AI automation tools to streamline business workflows and improve team productivity.</p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-bullet-icon">🤝</div>
+              <div class="exp-bullet-text">
+                <h4>Cross-functional Collaboration</h4>
+                <p>Collaborated with development and business teams to improve user experience, CRM workflows and customer management processes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-tools">
+            <span class="exp-tools-label">Tools &amp; Stack:</span>
+            <span class="tool-pill">Figma</span>
+            <span class="tool-pill">Zoho CRM</span>
+            <span class="tool-pill">Deluge Scripting</span>
+            <span class="tool-pill">AI Automation Tools</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section (7 Categories matching Resume) -->
+    <section class="section-padding" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Capabilities &amp; Tech Stack</p>
+          <h2 class="section-title">Technical Skills</h2>
+        </div>
+
+        <div class="skills-cards-grid">
+          <!-- 01 Mobile Development -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">01</span>
+                <span style="font-size: 1.4rem;">📱</span>
+              </div>
+              <h3 class="skill-name">Mobile Development</h3>
+              <p class="skill-desc">Native Android development in Java &amp; Kotlin, alongside cross-platform mobile apps in Flutter &amp; Dart with Material Design.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Kotlin</span>
+              <span class="skill-tag">Flutter &amp; Dart</span>
+              <span class="skill-tag">Android Studio</span>
+              <span class="skill-tag">XML Layouts</span>
+              <span class="skill-tag">Material Design</span>
+              <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">REST APIs</span>
+            </div>
+          </div>
+
+          <!-- 02 Backend & Data -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">02</span>
+                <span style="font-size: 1.4rem;">🗄️</span>
+              </div>
+              <h3 class="skill-name">Backend &amp; Data</h3>
+              <p class="skill-desc">Realtime databases, authentication, NoSQL document stores, local WebSocket bridge daemons, and Node.js microservices.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Firebase Realtime DB</span>
+              <span class="skill-tag">Firestore</span>
+              <span class="skill-tag">Firebase Auth</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">WebSocket</span>
+            </div>
+          </div>
+
+          <!-- 03 UI/UX & Product Design -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">03</span>
+                <span style="font-size: 1.4rem;">🎨</span>
+              </div>
+              <h3 class="skill-name">UI/UX &amp; Product Design</h3>
+              <p class="skill-desc">Creating wireframes, interactive mobile prototypes, cohesive design systems, and modern visual branding in Figma &amp; Framer.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Framer</span>
+              <span class="skill-tag">Canva</span>
+              <span class="skill-tag">Wireframing</span>
+              <span class="skill-tag">Interactive Prototyping</span>
+              <span class="skill-tag">Design Systems</span>
+            </div>
+          </div>
+
+          <!-- 04 Zoho CRM & Automation -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">04</span>
+                <span style="font-size: 1.4rem;">⚡</span>
+              </div>
+              <h3 class="skill-name">Zoho CRM &amp; Automation</h3>
+              <p class="skill-desc">Automating business operations, custom module architecture, writing Deluge automation scripts, and integrating API webhooks.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Zoho CRM</span>
+              <span class="skill-tag">Deluge Scripting</span>
+              <span class="skill-tag">Workflow Automation</span>
+              <span class="skill-tag">Process Optimisation</span>
+              <span class="skill-tag">API Webhooks</span>
+            </div>
+          </div>
+
+          <!-- 05 AI-Augmented Workflow -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">05</span>
+                <span style="font-size: 1.4rem;">🤖</span>
+              </div>
+              <h3 class="skill-name">AI-Augmented Workflow</h3>
+              <p class="skill-desc">Leveraging generative AI systems, structured prompt engineering, and automated pipelines to build robust software faster.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">AI Automation Tools</span>
+              <span class="skill-tag">AI Workflow Systems</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">Automated Pipelines</span>
+            </div>
+          </div>
+
+          <!-- 06 Game & 3D -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">06</span>
+                <span style="font-size: 1.4rem;">🎮</span>
+              </div>
+              <h3 class="skill-name">Game &amp; 3D</h3>
+              <p class="skill-desc">Exploring real-time 3D environments, spatial interactive mechanics, and asset modeling across industry game engines.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Unity</span>
+              <span class="skill-tag">Unreal Engine</span>
+              <span class="skill-tag">Blender</span>
+              <span class="skill-tag">Game Design Basics</span>
+            </div>
+          </div>
+
+          <!-- 07 Tools & Other -->
+          <div class="skill-card">
+            <div>
+              <div class="skill-card-top">
+                <span class="skill-index">07</span>
+                <span style="font-size: 1.4rem;">🛠️</span>
+              </div>
+              <h3 class="skill-name">Tools &amp; Other</h3>
+              <p class="skill-desc">Core programming foundations, version control, agile collaboration, automated testing, and web frameworks.</p>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Git &amp; GitHub</span>
+              <span class="skill-tag">Software Testing</span>
+              <span class="skill-tag">Agile Sprints</span>
+              <span class="skill-tag">C / C++ / C#</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">ASP.NET</span>
+              <span class="skill-tag">WordPress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section (KEEPING ALL PROJECT DETAILS EXACTLY AS IN PORTFOLIO) -->
+    <section class="section-padding" id="projects" style="background: #09090c;">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Selected Work</p>
+          <h2 class="section-title">Featured Projects</h2>
+        </div>
+
+        <!-- Project 01: RomClub -->
+        <article class="project-card" id="project-romclub">
+          <div class="project-top-row">
+            <div class="project-num-title">
+              <span class="project-num">01</span>
+              <div>
+                <p class="project-cat">Android Application</p>
+                <h3 class="project-title">RomClub</h3>
+                <p class="project-desc">
+                  A dedicated Android platform designed to centralize information, modules, and recovery guides for custom ROM enthusiasts and power users.
+                </p>
+                <p class="project-tools">Android Studio, Java, XML, Firebase</p>
+              </div>
+            </div>
+
+            <a href="https://github.com/vasimsamtani/RomClub" target="_blank" rel="noreferrer" class="btn-github">
+              GitHub Project
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Carousel Controls & Track for RomClub -->
+          <div class="carousel-header">
+            <div class="carousel-meta">
+              <span class="carousel-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                Mobile App UI
+              </span>
+              <span class="carousel-hint">5 App Screens &bull; Click to expand</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="carousel-nav-btn" onclick="scrollTrack('romclub-track', -210)" aria-label="Previous screenshot">&larr;</button>
+              <button class="carousel-nav-btn" onclick="scrollTrack('romclub-track', 210)" aria-label="Next screenshot">&rarr;</button>
+            </div>
+          </div>
+
+          <div class="carousel-track" id="romclub-track">
+            <!-- Screen 1 -->
+            <div class="phone-item" onclick="openLightbox('romclub', 0)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/romclub/modules.jpg" alt="Magisk & KernelSU Modules" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Magisk &amp; KernelSU Modules</div>
+                <div class="phone-caption-sub">Curated module repository with Play Integrity fixes &amp; 1-tap zip downloads.</div>
+              </div>
+            </div>
+
+            <!-- Screen 2 -->
+            <div class="phone-item" onclick="openLightbox('romclub', 1)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/romclub/select-device.jpg" alt="Device Detection & Selector" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Device Detection &amp; Selector</div>
+                <div class="phone-caption-sub">Auto-detects active hardware and filters codenames across Xiaomi, Pixel, and OnePlus.</div>
+              </div>
+            </div>
+
+            <!-- Screen 3 -->
+            <div class="phone-item" onclick="openLightbox('romclub', 2)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/romclub/guides.jpg" alt="Flashing Guides & Tutorials" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Flashing Guides &amp; Tutorials</div>
+                <div class="phone-caption-sub">Safety-tested protocols for bootloader unlock, custom recovery (TWRP/OrangeFox), and unbricking.</div>
+              </div>
+            </div>
+
+            <!-- Screen 4 -->
+            <div class="phone-item" onclick="openLightbox('romclub', 3)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/romclub/unlock-bootloader.jpg" alt="Step-by-Step Instructions" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Step-by-Step Instructions</div>
+                <div class="phone-caption-sub">Clear tutorial steps with critical data-loss warnings and essential fastboot commands.</div>
+              </div>
+            </div>
+
+            <!-- Screen 5 -->
+            <div class="phone-item" onclick="openLightbox('romclub', 4)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/romclub/about.jpg" alt="Developer & Community Hub" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Developer &amp; Community Hub</div>
+                <div class="phone-caption-sub">RomClub v2.0 Android Modder Edition crafted by Vasim, featuring feedback channels.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 02: VeilChat -->
+        <article class="project-card" id="project-veilchat">
+          <div class="project-top-row">
+            <div class="project-num-title">
+              <span class="project-num">02</span>
+              <div>
+                <p class="project-cat">Flutter &amp; Cybersecurity</p>
+                <h3 class="project-title">VeilChat</h3>
+                <p class="project-desc">
+                  Zero-leakage, privacy-hardened WhatsApp client and security enclave featuring duress cloaking, in-feed shimmer redaction, and a local WebSocket bridge daemon.
+                </p>
+                <p class="project-tools">Flutter, Dart, Node.js, Baileys, WebSocket, AES-256</p>
+              </div>
+            </div>
+
+            <a href="https://github.com/vasimsamtani/VeilChat" target="_blank" rel="noreferrer" class="btn-github">
+              GitHub Project
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Carousel Controls & Track for VeilChat -->
+          <div class="carousel-header">
+            <div class="carousel-meta">
+              <span class="carousel-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                Mobile App UI
+              </span>
+              <span class="carousel-hint">7 App Screens &bull; Click to expand</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="carousel-nav-btn" onclick="scrollTrack('veilchat-track', -210)" aria-label="Previous screenshot">&larr;</button>
+              <button class="carousel-nav-btn" onclick="scrollTrack('veilchat-track', 210)" aria-label="Next screenshot">&rarr;</button>
+            </div>
+          </div>
+
+          <div class="carousel-track" id="veilchat-track">
+            <!-- Screen 1 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 0)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/00_Splash_Screen.png" alt="Liquid Glass Brand Launch" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Liquid Glass Brand Launch</div>
+                <div class="phone-caption-sub">Cyberpunk launch screen with cryptographic key verification and security enclave initialization.</div>
+              </div>
+            </div>
+
+            <!-- Screen 2 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 1)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/01_WhatsApp_Bridge_Setup.png" alt="WhatsApp Bridge & QR Pairing" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">WhatsApp Bridge &amp; QR Pairing</div>
+                <div class="phone-caption-sub">Direct multi-device QR pairing over local Node.js WebSocket daemon with animated laser scanning.</div>
+              </div>
+            </div>
+
+            <!-- Screen 3 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 2)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/02_Unified_Veiled_Chat_Feed.png" alt="Unified Veiled Chat Feed" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Unified Veiled Chat Feed</div>
+                <div class="phone-caption-sub">In-feed Shimmer Redaction disguises preview text to prevent shoulder-surfing and visual snooping.</div>
+              </div>
+            </div>
+
+            <!-- Screen 4 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 3)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/03_Biometric_Keypad_Modal.png" alt="Dual-PIN & Biometric Keypad" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Dual-PIN &amp; Biometric Keypad</div>
+                <div class="phone-caption-sub">Secure tactile keypad with biometric unlock, randomized feedback, and automatic lockout defense.</div>
+              </div>
+            </div>
+
+            <!-- Screen 5 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 4)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/04_Unlocked_Conversation_View.png" alt="Real Confidential Conversation" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Real Confidential Conversation</div>
+                <div class="phone-caption-sub">Decrypted chat stream featuring live radial countdown timer and emergency panic lock wipe.</div>
+              </div>
+            </div>
+
+            <!-- Screen 6 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 5)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/05_Decoy_Mode_Chat.png" alt="Decoy Mode Duress Protection" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Decoy Mode Duress Protection</div>
+                <div class="phone-caption-sub">Alternate PIN unlocks plausible, dummy chat with zero forensic residue of confidential data.</div>
+              </div>
+            </div>
+
+            <!-- Screen 7 -->
+            <div class="phone-item" onclick="openLightbox('veilchat', 6)">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="/projects/veilchat/06_Privacy_Camouflage_Settings.png" alt="Stealth & Camouflage Controls" loading="lazy" />
+                  <div class="phone-screen-overlay"><span class="phone-zoom-pill">View Full</span></div>
+                </div>
+                <div class="phone-bar"></div>
+              </div>
+              <div class="phone-caption">
+                <div class="phone-caption-title">Stealth &amp; Camouflage Controls</div>
+                <div class="phone-caption-sub">Configure notification camouflage, ghost presence mode, zero-telemetry vault, and auto-lock.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education Section (Added from Resume) -->
+    <section class="section-padding" id="education">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Academic Foundation</p>
+          <h2 class="section-title">Education</h2>
+        </div>
+
+        <div class="edu-card-grid">
+          <!-- MCA -->
+          <div class="edu-card">
+            <div class="edu-badge-row">
+              <span class="edu-level-badge">Postgraduate &bull; Completed</span>
+              <span class="edu-score-badge">Sem 4: 64%</span>
+            </div>
+            <h3 class="edu-degree">Master of Computer Applications (MCA)</h3>
+            <p class="edu-institution">GLS University, Ahmedabad</p>
+          </div>
+
+          <!-- BCA -->
+          <div class="edu-card">
+            <div class="edu-badge-row">
+              <span class="edu-level-badge">Undergraduate &bull; 2021 &ndash; 2024</span>
+              <span class="edu-score-badge">82%</span>
+            </div>
+            <h3 class="edu-degree">Bachelor of Computer Applications (BCA)</h3>
+            <p class="edu-institution">Shri V. J. Modha College of IT, Porbandar &mdash; Bhakta Kavi Narsinh Mehta University, Junagadh</p>
+          </div>
+
+          <!-- HSC -->
+          <div class="edu-card">
+            <div class="edu-badge-row">
+              <span class="edu-level-badge">Higher Secondary (Class 12) &bull; 2021</span>
+              <span class="edu-score-badge">52%</span>
+            </div>
+            <h3 class="edu-degree">HSC &mdash; Science Stream</h3>
+            <p class="edu-institution">Shree O. N. Modha School, Porbandar</p>
+          </div>
+
+          <!-- SSC -->
+          <div class="edu-card">
+            <div class="edu-badge-row">
+              <span class="edu-level-badge">Secondary School (Class 10) &bull; 2018</span>
+              <span class="edu-score-badge">62%</span>
+            </div>
+            <h3 class="edu-degree">SSC</h3>
+            <p class="edu-institution">Shree Saraswati Science School, Porbandar</p>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="languages-wrapper">
+          <p style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #60a5fa;">Languages Spoken</p>
+          <div class="lang-pills">
+            <span class="lang-pill"><span class="lang-dot"></span>Hindi</span>
+            <span class="lang-pill"><span class="lang-dot"></span>Gujarati</span>
+            <span class="lang-pill"><span class="lang-dot"></span>English</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact" style="background: #09090c;">
+      <div class="container">
+        <div class="contact-card">
+          <p class="section-eyebrow">Get In Touch</p>
+          <h2 class="contact-title">Let's Build Together</h2>
+          <p class="contact-desc">
+            Have a project in mind, an opportunity to discuss, or want to collaborate on native Android apps, cross-platform Flutter development, UI/UX design, or Zoho &amp; AI automation workflows? Feel free to reach out.
+          </p>
+
+          <div class="contact-actions">
+            <a href="mailto:vasimsamtani940@gmail.com" class="btn-main btn-main-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              vasimsamtani940@gmail.com
+            </a>
+
+            <a href="tel:+919879151961" class="btn-main btn-main-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              +91 9879151961
+            </a>
+
+            <a href="resume.html" class="btn-main btn-main-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              Open Resume (Printable)
+            </a>
+          </div>
+
+          <div class="contact-links-row">
+            <span>📍 Ahmedabad, Gujarat, India</span>
+            <a href="https://linkedin.com/in/vasimsamtani" target="_blank" rel="noreferrer">
+              🔗 LinkedIn Profile
+            </a>
+            <a href="https://github.com/vasimsamtani" target="_blank" rel="noreferrer">
+              🐙 GitHub Profile
+            </a>
+            <a href="https://vasimsamtani.vercel.app" target="_blank" rel="noreferrer">
+              🌐 vasimsamtani.vercel.app
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>&copy; <span id="year">2026</span> Vasim Samtani. All rights reserved.</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal Dialog for App Screenshots -->
+  <dialog class="modal-dialog" id="lightbox-dialog" aria-labelledby="modal-title">
+    <button class="modal-close-btn" onclick="closeLightbox()" aria-label="Close dialog">&times;</button>
+    <div style="font-size: 0.72rem; font-weight: 700; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;" id="modal-counter">Screen 1 of 5</div>
+    
+    <div class="modal-phone">
+      <div class="modal-phone-screen">
+        <img id="modal-img" src="" alt="App screenshot" />
+      </div>
+    </div>
+
+    <div class="modal-caption">
+      <h3 id="modal-title">Title</h3>
+      <p id="modal-desc">Caption</p>
+    </div>
+
+    <div class="modal-nav">
+      <button class="modal-nav-btn" onclick="changeSlide(-1)">Previous</button>
+      <button class="modal-nav-btn" onclick="changeSlide(1)">Next</button>
+    </div>
+  </dialog>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Dataset for screenshots matching portfolio App.tsx
+    const screenshotData = {
+      romclub: [
+        {
+          src: "/projects/romclub/modules.jpg",
+          title: "Magisk & KernelSU Modules",
+          caption: "Curated module repository with Play Integrity fixes, audio mods & 1-tap zip downloads."
+        },
+        {
+          src: "/projects/romclub/select-device.jpg",
+          title: "Device Detection & Selector",
+          caption: "Auto-detects active hardware and filters codenames across Xiaomi, Pixel, and OnePlus."
+        },
+        {
+          src: "/projects/romclub/guides.jpg",
+          title: "Flashing Guides & Tutorials",
+          caption: "Safety-tested protocols for bootloader unlock, custom recovery (TWRP/OrangeFox), and unbricking."
+        },
+        {
+          src: "/projects/romclub/unlock-bootloader.jpg",
+          title: "Step-by-Step Instructions",
+          caption: "Clear tutorial steps with critical data-loss warnings and essential fastboot commands."
+        },
+        {
+          src: "/projects/romclub/about.jpg",
+          title: "Developer & Community Hub",
+          caption: "RomClub v2.0 Android Modder Edition crafted by Vasim, featuring feedback and community channels."
+        }
+      ],
+      veilchat: [
+        {
+          src: "/projects/veilchat/00_Splash_Screen.png",
+          title: "Liquid Glass Brand Launch",
+          caption: "Cyberpunk aesthetic launch screen with cryptographic key verification and security enclave initialization."
+        },
+        {
+          src: "/projects/veilchat/01_WhatsApp_Bridge_Setup.png",
+          title: "WhatsApp Bridge & QR Pairing",
+          caption: "Direct multi-device QR pairing over local Node.js WebSocket daemon with animated laser scanning."
+        },
+        {
+          src: "/projects/veilchat/02_Unified_Veiled_Chat_Feed.png",
+          title: "Unified Veiled Chat Feed",
+          caption: "In-feed Shimmer Redaction disguises preview text to prevent shoulder-surfing and visual eavesdropping."
+        },
+        {
+          src: "/projects/veilchat/03_Biometric_Keypad_Modal.png",
+          title: "Dual-PIN & Biometric Keypad",
+          caption: "Secure tactile keypad with biometric unlock, randomized feedback, and automatic lockout defense."
+        },
+        {
+          src: "/projects/veilchat/04_Unlocked_Conversation_View.png",
+          title: "Real Confidential Conversation",
+          caption: "Decrypted chat stream featuring live radial auto-lock countdown timer and emergency panic lock wipe."
+        },
+        {
+          src: "/projects/veilchat/05_Decoy_Mode_Chat.png",
+          title: "Decoy Mode Duress Protection",
+          caption: "Alternate PIN unlocks plausible, benign dummy conversation with zero forensic residue of confidential data."
+        },
+        {
+          src: "/projects/veilchat/06_Privacy_Camouflage_Settings.png",
+          title: "Stealth & Camouflage Controls",
+          caption: "Configure notification camouflage, ghost presence mode, zero-telemetry vault, and auto-lock thresholds."
+        }
+      ]
+    };
+
+    let currentProject = "romclub";
+    let currentIndex = 0;
+    const dialog = document.getElementById("lightbox-dialog");
+
+    function scrollTrack(trackId, amount) {
+      const el = document.getElementById(trackId);
+      if (el) {
+        el.scrollBy({ left: amount, behavior: "smooth" });
+      }
+    }
+
+    function openLightbox(project, index) {
+      currentProject = project;
+      currentIndex = index;
+      updateModal();
+      dialog.showModal();
+    }
+
+    function closeLightbox() {
+      dialog.close();
+    }
+
+    function changeSlide(delta) {
+      const list = screenshotData[currentProject];
+      currentIndex = (currentIndex + delta + list.length) % list.length;
+      updateModal();
+    }
+
+    function updateModal() {
+      const list = screenshotData[currentProject];
+      const item = list[currentIndex];
+      document.getElementById("modal-img").src = item.src;
+      document.getElementById("modal-title").textContent = item.title;
+      document.getElementById("modal-desc").textContent = item.caption;
+      document.getElementById("modal-counter").textContent = `Screen ${currentIndex + 1} of ${list.length}`;
+    }
+
+    // Close modal when clicking outside dialog backdrop
+    dialog.addEventListener("click", (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+        && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      if (!isInDialog) {
+        dialog.close();
+      }
+    });
+
+    // Keyboard navigation
+    window.addEventListener("keydown", (e) => {
+      if (dialog.open) {
+        if (e.key === "ArrowLeft") changeSlide(-1);
+        if (e.key === "ArrowRight") changeSlide(1);
+      }
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

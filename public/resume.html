@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vasim Samtani — Resume</title>
+  <meta name="description" content="Resume of Vasim Samtani — AI-Augmented Android / Flutter Developer | UI/UX Designer | AI Automation" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --border-color: #e2e8f0;
+      --badge-bg: #f1f5f9;
+      --badge-text: #1e293b;
+      --accent: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.55;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      padding: 30px 15px;
+    }
+
+    .action-bar {
+      max-width: 860px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .action-bar .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 9999px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    .resume-sheet {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      padding: 44px 48px;
+    }
+
+    /* Header styling */
+    header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+
+    h1.name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #0f172a;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .job-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .contact-row a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .contact-row a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .contact-separator {
+      color: #cbd5e1;
+    }
+
+    /* Section Headings */
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f172a;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Profile summary */
+    .summary-text {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Technical skills */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skill-row {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .skill-category {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .skill-items {
+      color: var(--text-muted);
+    }
+
+    /* Experience & Projects common */
+    .entry-item {
+      margin-bottom: 16px;
+    }
+    .entry-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 3px;
+    }
+
+    .entry-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .entry-role {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .entry-date {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+
+    .entry-stack {
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #0284c7;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 3px;
+      color: #0f172a;
+      font-weight: bold;
+    }
+
+    .entry-meta {
+      margin-top: 6px;
+      font-size: 12.5px;
+      color: var(--text-subtle);
+    }
+
+    .entry-meta strong {
+      color: #1e293b;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12.5px;
+      margin-top: 4px;
+    }
+    .github-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Education Table */
+    .edu-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table.edu-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    table.edu-table th {
+      text-align: left;
+      background: #f8fafc;
+      padding: 8px 12px;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid var(--border-color);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    table.edu-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    table.edu-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    table.edu-table .edu-degree {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    table.edu-table .edu-result {
+      font-weight: 600;
+      color: #0284c7;
+      white-space: nowrap;
+    }
+
+    /* Languages */
+    .languages-text {
+      font-size: 13.5px;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    /* Footer availability */
+    .availability-box {
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px dashed #cbd5e1;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        background-color: #ffffff;
+        padding: 0;
+        font-size: 12.5px;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .resume-sheet {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      header {
+        border-bottom-width: 2px;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+
+      .section {
+        margin-bottom: 16px;
+        break-inside: avoid;
+      }
+
+      .entry-item {
+        break-inside: avoid;
+        margin-bottom: 12px;
+      }
+
+      a {
+        color: #0f172a !important;
+        text-decoration: none !important;
+      }
+
+      @page {
+        margin: 14mm 14mm 14mm 14mm;
+        size: A4 portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar (Hidden during Print) -->
+  <div class="action-bar">
+    <div class="brand-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      Vasim Samtani &bull; Official Resume
+    </div>
+    <div class="action-buttons">
+      <a href="/" class="btn btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        View Portfolio Website
+      </a>
+      <button onclick="window.print()" class="btn btn-primary" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Printable Resume Sheet -->
+  <main class="resume-sheet">
+    <!-- Header -->
+    <header>
+      <h1 class="name">VASIM SAMTANI</h1>
+      <div class="job-title">AI-Augmented Android / Flutter Developer | UI/UX Designer | AI Automation</div>
+      
+      <div class="contact-row">
+        <a href="mailto:vasimsamtani940@gmail.com">vasimsamtani940@gmail.com</a>
+        <span class="contact-separator">|</span>
+        <a href="tel:+919879151961">+91 9879151961</a>
+        <span class="contact-separator">|</span>
+        <span>Ahmedabad, India</span>
+      </div>
+
+      <div class="contact-row" style="margin-top: 6px;">
+        <span>LinkedIn: <a href="https://linkedin.com/in/vasimsamtani" target="_blank" rel="noreferrer">linkedin.com/in/vasimsamtani</a></span>
+        <span class="contact-separator">|</span>
+        <span>GitHub: <a href="https://github.com/vasimsamtani" target="_blank" rel="noreferrer">github.com/vasimsamtani</a></span>
+        <span class="contact-separator">|</span>
+        <span>Portfolio: <a href="https://vasimsamtani.vercel.app" target="_blank" rel="noreferrer">vasimsamtani.vercel.app</a></span>
+      </div>
+    </header>
+
+    <!-- Profile Summary -->
+    <section class="section" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="section-title">PROFILE SUMMARY</h2>
+      <p class="summary-text">
+        Android developer and UI/UX designer with hands-on experience in mobile application development, Zoho CRM automation, and AI workflow systems. Builds native Android apps in Java with Firebase and cross-platform apps in Flutter, designs user-centred interfaces in Figma, and works in an AI-augmented workflow - using AI tools for planning, development and automation while personally reviewing, testing and refining the result. MCA graduate from GLS University, Ahmedabad (Sem 4: 64%), with internship experience at Tectrionix, Ahmedabad.
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading" class="section-title">TECHNICAL SKILLS</h2>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-category">Mobile Development:</span>
+          <span class="skill-items">Java, Kotlin, Flutter &amp; Dart, Android Studio, XML Layouts, Material Design, Firebase, REST APIs</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Backend &amp; Data:</span>
+          <span class="skill-items">Firebase Realtime Database, Firestore, Firebase Auth, Node.js, WebSocket</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">UI/UX &amp; Product Design:</span>
+          <span class="skill-items">Figma, Framer, Canva, Wireframing, Interactive Prototyping, Design Systems</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Zoho CRM &amp; Automation:</span>
+          <span class="skill-items">Zoho CRM, Deluge Scripting, Workflow Automation, Process Optimisation, API Webhooks</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">AI-Augmented Workflow:</span>
+          <span class="skill-items">AI Automation Tools, AI Workflow Systems, Prompt Engineering, Automated Pipelines</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Game &amp; 3D:</span>
+          <span class="skill-items">Unity, Unreal Engine, Blender, Game Design Basics</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Tools &amp; Other:</span>
+          <span class="skill-items">Git &amp; GitHub, Software Testing, Agile Sprints, C, C++, C#, HTML/CSS, ASP.NET, WordPress</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" aria-labelledby="experience-heading">
+      <h2 id="experience-heading" class="section-title">EXPERIENCE</h2>
+      <div class="entry-item">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Tectrionix, Ahmedabad</span>
+            <span class="entry-role">— UI/UX Designer (Figma) &amp; Zoho CRM Intern</span>
+          </div>
+          <div class="entry-date">(4 Months) — Completed Feb 2026</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Designed user-friendly web and mobile interfaces, wireframes, prototypes and responsive layouts using Figma.</li>
+          <li>Customised Zoho CRM modules, workflows, fields, layouts and automation to support business requirements, including Deluge scripting.</li>
+          <li>Worked with AI automation tools to streamline business workflows and improve productivity.</li>
+          <li>Collaborated with development and business teams to improve user experience, CRM workflows and customer management processes.</li>
+        </ul>
+        <div class="entry-meta">
+          <strong>Tools:</strong> Figma, Zoho CRM, Deluge, AI Automation Tools
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="section-title">PROJECTS</h2>
+
+      <!-- VeilChat -->
+      <div class="entry-item">
+        <div class="entry-header">
+          <span class="entry-title">VeilChat</span>
+        </div>
+        <div class="entry-stack">Flutter, Dart, Node.js, Baileys, WebSocket, AES-256</div>
+        <ul class="bullet-list">
+          <li>Built a zero-leakage, privacy-hardened WhatsApp client and security enclave featuring duress cloaking, in-feed shimmer redaction and a local WebSocket bridge daemon.</li>
+          <li>Designed for privacy first, with AES-256 encryption as part of the stack.</li>
+        </ul>
+        <a href="https://github.com/vasimsamtani/VeilChat" target="_blank" rel="noreferrer" class="github-link">
+          GitHub: github.com/vasimsamtani/VeilChat
+        </a>
+      </div>
+
+      <!-- RomClub -->
+      <div class="entry-item">
+        <div class="entry-header">
+          <span class="entry-title">RomClub</span>
+        </div>
+        <div class="entry-stack">Java, Android Studio, Firebase Realtime Database, Material Design</div>
+        <ul class="bullet-list">
+          <li>Built a native Android app (API 24-34) that centralises custom ROMs, kernels and Magisk/KernelSU modules by device, with version history, changelogs and direct download links.</li>
+          <li>Implemented interactive flashing guides for bootloader unlocking and custom recovery (TWRP/OrangeFox), with safety advisories and SHA-256/MD5 checksum verification to prevent corrupt installs.</li>
+          <li>Integrated Firebase Realtime Database for live content updates without APK reinstalls; built an OLED-optimised dark UI with ViewBinding, RecyclerView and Material Components.</li>
+          <li>Designed the complete UI/UX and app walkthrough; screenshots are available on GitHub.</li>
+        </ul>
+        <a href="https://github.com/vasimsamtani/RomClub" target="_blank" rel="noreferrer" class="github-link">
+          GitHub: github.com/vasimsamtani/RomClub
+        </a>
+      </div>
+
+      <!-- The EST Café -->
+      <div class="entry-item">
+        <div class="entry-header">
+          <span class="entry-title">The EST Café (2025)</span>
+        </div>
+        <div class="entry-stack">Java, Android Studio, XML, Firebase</div>
+        <ul class="bullet-list">
+          <li>Designed and developed an Android application showcasing the café's concept, menu, ambiance and customer experience.</li>
+          <li>Aimed to enhance customer engagement and promote the café's business through an interactive digital platform highlighting its focus on high-quality ingredients and a cosy environment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section" aria-labelledby="education-heading">
+      <h2 id="education-heading" class="section-title">EDUCATION</h2>
+      <div class="edu-table-wrapper">
+        <table class="edu-table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 32%;">Qualification</th>
+              <th scope="col" style="width: 52%;">Institution</th>
+              <th scope="col" style="width: 16%;">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="edu-degree">Master of Computer Applications (MCA) - Completed</td>
+              <td>GLS University, Ahmedabad</td>
+              <td class="edu-result">Sem 4: 64%</td>
+            </tr>
+            <tr>
+              <td class="edu-degree">Bachelor of Computer Applications (BCA) (2021-2024)</td>
+              <td>Shri V. J. Modha College of IT, Porbandar — Bhakta Kavi Narsinh Mehta University, Junagadh</td>
+              <td class="edu-result">82%</td>
+            </tr>
+            <tr>
+              <td class="edu-degree">HSC (Class 12) (2021)</td>
+              <td>Shree O. N. Modha School, Porbandar</td>
+              <td class="edu-result">52%</td>
+            </tr>
+            <tr>
+              <td class="edu-degree">SSC (Class 10) (2018)</td>
+              <td>Shree Saraswati Science School, Porbandar</td>
+              <td class="edu-result">62%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="section" aria-labelledby="languages-heading">
+      <h2 id="languages-heading" class="section-title">LANGUAGES</h2>
+      <p class="languages-text">Hindi &nbsp;|&nbsp; Gujarati &nbsp;|&nbsp; English</p>
+    </section>
+
+    <!-- Links & Footer -->
+    <section class="section" aria-labelledby="links-heading" style="margin-bottom: 0;">
+      <h2 id="links-heading" class="section-title">LINKS</h2>
+      <div class="contact-row" style="margin-top: 4px;">
+        <span><strong>Portfolio:</strong> <a href="https://vasimsamtani.vercel.app" target="_blank" rel="noreferrer">vasimsamtani.vercel.app</a></span>
+      </div>
+      <div class="contact-row" style="margin-top: 4px;">
+        <span><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/vasimsamtani" target="_blank" rel="noreferrer">linkedin.com/in/vasimsamtani</a></span>
+      </div>
+      <div class="contact-row" style="margin-top: 4px;">
+        <span><strong>GitHub:</strong> <a href="https://github.com/vasimsamtani" target="_blank" rel="noreferrer">github.com/vasimsamtani</a></span>
+      </div>
+
+      <div class="availability-box">
+        Available for new roles and opportunities in Android development, Flutter development, UI/UX design and AI automation.
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -135,7 +135,7 @@ function Navbar() {
           Vasim<span className="text-blue-500">.</span>Dev
         </a>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/80">
+        <nav className="hidden md:flex items-center gap-7 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/80">
           <a href="#about" className="hover:text-white transition-colors">
             About
           </a>
@@ -148,12 +148,21 @@ function Navbar() {
           <a href="#projects" className="hover:text-white transition-colors">
             Projects
           </a>
+          <a href="#education" className="hover:text-white transition-colors">
+            Education
+          </a>
           <a href="#contact" className="hover:text-white transition-colors">
             Contact
           </a>
         </nav>
 
         <div className="flex items-center gap-3">
+          <a
+            href="/resume.html"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/5 border border-white/15 text-white hover:bg-white/10 transition-all"
+          >
+            Resume
+          </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-1 px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md shadow-blue-500/20"
@@ -188,12 +197,19 @@ function HeroSection() {
           </h1>
         </FadeIn>
 
+        <FadeIn delay={0.25} y={20}>
+          <p className="text-sm sm:text-base md:text-lg font-semibold uppercase tracking-wider text-blue-400 mt-2">
+            AI-Augmented Android / Flutter Developer | UI/UX Designer | AI Automation
+          </p>
+        </FadeIn>
+
         <FadeIn delay={0.3} y={25}>
-          <p className="text-base sm:text-lg md:text-xl text-[#D7E2EA]/80 font-normal max-w-2xl mx-auto mt-4 leading-relaxed">
-            Android Developer &amp; UI/UX Designer with hands-on experience in{" "}
+          <p className="text-base sm:text-lg text-[#D7E2EA]/80 font-normal max-w-3xl mx-auto mt-4 leading-relaxed">
+            Android developer and UI/UX designer with hands-on experience in{" "}
             <span className="text-white font-medium">mobile application development</span>,{" "}
             <span className="text-white font-medium">Zoho CRM automation</span>, and{" "}
-            <span className="text-white font-medium">AI workflow systems</span>.
+            <span className="text-white font-medium">AI workflow systems</span>. Builds native Android apps in Java with Firebase and cross-platform apps in Flutter, designs user-centred interfaces in Figma, and works in an{" "}
+            <span className="text-white font-medium">AI-augmented workflow</span> &mdash; utilizing AI tools for planning, development, and automation while personally reviewing, testing, and refining the result. MCA graduate from GLS University, Ahmedabad (Sem 4: 64%), with internship experience at Tectrionix, Ahmedabad.
           </p>
         </FadeIn>
 
@@ -206,8 +222,14 @@ function HeroSection() {
               Explore Projects
             </a>
             <a
-              href="#contact"
+              href="/resume.html"
               className="px-8 py-3.5 rounded-full font-medium uppercase tracking-widest text-sm border-2 border-white/20 text-[#D7E2EA] hover:bg-white/10 hover:border-white/40 transition-all inline-flex items-center gap-2"
+            >
+              View Resume
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-3.5 rounded-full font-medium uppercase tracking-widest text-sm bg-white/5 border border-white/10 text-[#D7E2EA] hover:bg-white/10 transition-all"
             >
               Contact Me
             </a>
@@ -228,24 +250,26 @@ const techStack1 = [
   "Kotlin",
   "Flutter & Dart",
   "XML Layouts",
-  "Firebase",
+  "Firebase Realtime DB",
+  "Firestore",
   "REST APIs",
-  "Zoho CRM",
-  "Mobile UI/UX",
+  "Node.js",
+  "WebSocket",
   "Material Design",
 ];
 
 const techStack2 = [
   "UI/UX Design",
   "Figma",
+  "Framer",
   "Canva",
-  "AI Automation Tools",
+  "Zoho CRM",
   "Deluge Scripting",
+  "AI Workflow Systems",
+  "Prompt Engineering",
   "Git & GitHub",
-  "Workflow Automation",
+  "Unity & Unreal",
   "Software Testing",
-  "Unreal & Unity",
-  "Agile Sprints",
 ];
 
 function TechTicker() {
@@ -305,13 +329,13 @@ function AboutSection() {
         <FadeIn delay={0.1} y={20} className="md:col-span-7">
           <div className="space-y-5 text-[#D7E2EA]/85 text-base sm:text-lg leading-relaxed font-light">
             <p>
-              I am an <strong className="text-white font-medium">MCA graduate</strong> with a dedicated focus on building intuitive mobile applications and streamlining digital workflows. My technical background centers around <strong className="text-white font-medium">native Android development</strong> (Java, XML, Firebase) along with cross-platform mobile development with Flutter.
+              I am an <strong className="text-white font-medium">MCA graduate from GLS University, Ahmedabad (Sem 4: 64%)</strong> with a dedicated focus on building intuitive mobile applications and streamlining digital workflows. My technical background centers around <strong className="text-white font-medium">native Android development</strong> (Java, Kotlin, XML, Firebase) along with cross-platform mobile development with <strong className="text-white font-medium">Flutter &amp; Dart</strong>.
             </p>
             <p>
-              In <strong className="text-white font-medium">February 2026</strong>, I completed a 4-month internship at <strong className="text-white font-medium">Tectrionix</strong> (Ahmedabad), where I gained practical industry experience configuring business workflows within the <strong className="text-white font-medium">Zoho ecosystem</strong>, designing user-centered UI/UX interfaces, and working with modern <strong className="text-white font-medium">AI automation tools</strong>.
+              In <strong className="text-white font-medium">February 2026</strong>, I completed a 4-month industry internship at <strong className="text-white font-medium">Tectrionix</strong> (Ahmedabad), where I gained practical experience designing web and mobile UI/UX in Figma, customizing business workflows in the <strong className="text-white font-medium">Zoho ecosystem</strong> with Deluge scripting, and deploying modern <strong className="text-white font-medium">AI automation tools</strong>.
             </p>
             <p>
-              I also have a strong aesthetic drive in <strong className="text-white font-medium">UI/UX design using Figma and Canva</strong>, ensuring that functional software is paired with clean typography, visual hierarchy, and enjoyable user experiences.
+              I actively operate in an <strong className="text-white font-medium">AI-augmented workflow</strong> &mdash; leveraging AI tools for architectural planning, rapid prototyping, and automated pipelines while personally reviewing, testing, and refining every deliverable.
             </p>
           </div>
         </FadeIn>
@@ -325,7 +349,7 @@ function AboutSection() {
                 MCA Degree
               </h3>
               <p className="text-xs text-[#D7E2EA]/70 mt-1">
-                Master of Computer Applications with focus on mobile &amp; software engineering.
+                GLS University, Ahmedabad (Sem 4: 64%). Solid engineering foundation.
               </p>
             </div>
           </FadeIn>
@@ -334,10 +358,10 @@ function AboutSection() {
             <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-indigo-500/40 transition-colors">
               <Briefcase className="text-indigo-400 mb-3" size={28} />
               <h3 className="text-white font-semibold text-lg uppercase tracking-wide">
-                Internship Experience
+                Tectrionix Intern
               </h3>
               <p className="text-xs text-[#D7E2EA]/70 mt-1">
-                Tectrionix (Ahmedabad): UI/UX, Zoho, and AI Automation (Completed Feb 2026).
+                UI/UX Designer (Figma) &amp; Zoho CRM Intern (Completed Feb 2026).
               </p>
             </div>
           </FadeIn>
@@ -346,10 +370,10 @@ function AboutSection() {
             <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/40 transition-colors">
               <Smartphone className="text-purple-400 mb-3" size={28} />
               <h3 className="text-white font-semibold text-lg uppercase tracking-wide">
-                Mobile Focused
+                Android &amp; Flutter
               </h3>
               <p className="text-xs text-[#D7E2EA]/70 mt-1">
-                Custom Android apps in Java, XML, Firebase, and Flutter prototypes.
+                Native Java apps with Firebase and cross-platform Flutter security enclaves.
               </p>
             </div>
           </FadeIn>
@@ -358,10 +382,10 @@ function AboutSection() {
             <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 transition-colors">
               <Sparkles className="text-emerald-400 mb-3" size={28} />
               <h3 className="text-white font-semibold text-lg uppercase tracking-wide">
-                UI/UX Design
+                AI Automation
               </h3>
               <p className="text-xs text-[#D7E2EA]/70 mt-1">
-                User interfaces, wireframing, and interactive design in Figma &amp; Canva.
+                AI workflow systems, prompt engineering, and automated pipelines.
               </p>
             </div>
           </FadeIn>
@@ -400,7 +424,7 @@ function ExperienceSection() {
                 Completed Internship • 4 Months
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-wide">
-                Intern — UI/UX, Zoho &amp; AI Automation
+                UI/UX Designer (Figma) &amp; Zoho CRM Intern
               </h3>
               <p className="text-base sm:text-lg text-[#D7E2EA]/70 mt-1 font-medium">
                 Tectrionix • Ahmedabad, Gujarat, India
@@ -409,7 +433,7 @@ function ExperienceSection() {
 
             <div className="flex items-center gap-3">
               <span className="px-4 py-2 rounded-xl text-xs sm:text-sm uppercase tracking-wider text-[#D7E2EA]/80 font-medium bg-white/5 border border-white/10">
-                Nov 2025 – Feb 2026
+                Completed Feb 2026
               </span>
             </div>
           </div>
@@ -421,10 +445,10 @@ function ExperienceSection() {
               </div>
               <div>
                 <h4 className="text-white font-medium text-base mb-1">
-                  UI/UX Design &amp; Digital Interfaces
+                  UI/UX Interfaces &amp; Responsive Layouts
                 </h4>
                 <p className="text-sm text-[#D7E2EA]/70 leading-relaxed font-light">
-                  Creating clean wireframes, interactive user flows, and modern visual designs using Figma and Canva focused on user satisfaction.
+                  Designed user-friendly web and mobile interfaces, wireframes, prototypes and responsive layouts using Figma.
                 </p>
               </div>
             </div>
@@ -435,10 +459,10 @@ function ExperienceSection() {
               </div>
               <div>
                 <h4 className="text-white font-medium text-base mb-1">
-                  Zoho Business Workflow Scripting
+                  Zoho CRM Customization &amp; Deluge
                 </h4>
                 <p className="text-sm text-[#D7E2EA]/70 leading-relaxed font-light">
-                  Configuring enterprise workflows, custom module triggers, and Deluge scripting within the Zoho ecosystem to streamline operations.
+                  Customised Zoho CRM modules, workflows, fields, layouts and automation to support business requirements, including Deluge scripting.
                 </p>
               </div>
             </div>
@@ -449,10 +473,10 @@ function ExperienceSection() {
               </div>
               <div>
                 <h4 className="text-white font-medium text-base mb-1">
-                  AI Automation Tools &amp; Workflows
+                  AI Automation Tools &amp; Productivity
                 </h4>
                 <p className="text-sm text-[#D7E2EA]/70 leading-relaxed font-light">
-                  Assisting in the evaluation, integration, and deployment of modern AI automation tools and real-time process systems.
+                  Worked with AI automation tools to streamline business workflows and improve productivity.
                 </p>
               </div>
             </div>
@@ -463,13 +487,21 @@ function ExperienceSection() {
               </div>
               <div>
                 <h4 className="text-white font-medium text-base mb-1">
-                  Agile Collaboration &amp; Software Testing
+                  Cross-functional Collaboration
                 </h4>
                 <p className="text-sm text-[#D7E2EA]/70 leading-relaxed font-light">
-                  Participating in sprint meetings, requirement analysis, software debugging, and quality assurance testing.
+                  Collaborated with development and business teams to improve user experience, CRM workflows and customer management processes.
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="mt-8 pt-5 border-t border-white/10 flex items-center gap-2 flex-wrap">
+            <span className="text-xs uppercase font-bold text-white tracking-wider mr-2">Tools:</span>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-blue-300">Figma</span>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-blue-300">Zoho CRM</span>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-blue-300">Deluge</span>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-blue-300">AI Automation Tools</span>
           </div>
         </div>
       </FadeIn>
@@ -481,33 +513,45 @@ function ExperienceSection() {
 const skillCategories = [
   {
     num: "01",
-    name: "Mobile App Development",
-    desc: "Building native Android apps with Java, XML, and Firebase, with clean architectural structure and responsive UI layouts.",
-    tags: ["Android Studio", "Java", "Kotlin", "Flutter", "Firebase", "REST APIs"],
+    name: "Mobile Development",
+    desc: "Building native Android apps with Java, Kotlin, XML, and Firebase, as well as cross-platform security applications in Flutter & Dart.",
+    tags: ["Java", "Kotlin", "Flutter & Dart", "Android Studio", "XML Layouts", "Material Design", "Firebase", "REST APIs"],
   },
   {
     num: "02",
-    name: "UI/UX & Product Design",
-    desc: "Crafting intuitive user interfaces, high-fidelity wireframes, and design systems focused on user-friendly navigation.",
-    tags: ["Figma", "Canva", "Wireframing", "Interactive Prototyping", "Design Systems"],
+    name: "Backend & Data",
+    desc: "Realtime synchronized databases, secure authentication, cloud document stores, local WebSocket bridge daemons, and Node.js microservices.",
+    tags: ["Firebase Realtime Database", "Firestore", "Firebase Auth", "Node.js", "WebSocket"],
   },
   {
     num: "03",
-    name: "Zoho CRM & Business Automation",
-    desc: "Automating repetitive business processes, building custom Zoho CRM integrations, and writing Deluge automation scripts.",
-    tags: ["Zoho Ecosystem", "Deluge Scripting", "Workflow Automation", "Process Optimization"],
+    name: "UI/UX & Product Design",
+    desc: "Crafting intuitive user interfaces, high-fidelity wireframes, interactive mobile prototypes, and scalable design systems.",
+    tags: ["Figma", "Framer", "Canva", "Wireframing", "Interactive Prototyping", "Design Systems"],
   },
   {
     num: "04",
-    name: "AI Automation & Productivity",
-    desc: "Leveraging cutting-edge AI workflow tools, prompt engineering, and API automations to accelerate development and business tasks.",
-    tags: ["AI Workflow Tools", "Automated Pipelines", "Productivity Systems", "API Webhooks"],
+    name: "Zoho CRM & Automation",
+    desc: "Automating repetitive business processes, building custom Zoho CRM integrations, and writing Deluge automation scripts.",
+    tags: ["Zoho CRM", "Deluge Scripting", "Workflow Automation", "Process Optimisation", "API Webhooks"],
   },
   {
     num: "05",
-    name: "Game & 3D Prototyping",
-    desc: "Exploring 3D modeling and interactive environments for games and digital visual experiences.",
-    tags: ["Blender", "Unity", "Unreal Engine", "Game Design Basics"],
+    name: "AI-Augmented Workflow",
+    desc: "Leveraging cutting-edge AI workflow tools, prompt engineering, and automated pipelines to accelerate development and product delivery.",
+    tags: ["AI Automation Tools", "AI Workflow Systems", "Prompt Engineering", "Automated Pipelines"],
+  },
+  {
+    num: "06",
+    name: "Game & 3D",
+    desc: "Exploring 3D modeling, interactive environments, and game design basics across industry engines.",
+    tags: ["Unity", "Unreal Engine", "Blender", "Game Design Basics"],
+  },
+  {
+    num: "07",
+    name: "Tools & Other",
+    desc: "Foundational software testing, agile sprints, version control with Git & GitHub, and multiple core programming paradigms.",
+    tags: ["Git & GitHub", "Software Testing", "Agile Sprints", "C", "C++", "C#", "HTML/CSS", "ASP.NET", "WordPress"],
   },
 ];
 
@@ -1013,6 +1057,97 @@ function ProjectsSection() {
   );
 }
 
+/* ----------------------------- EducationSection ---------------------------- */
+function EducationSection() {
+  const educationList = [
+    {
+      degree: "Master of Computer Applications (MCA)",
+      status: "Completed",
+      institution: "GLS University, Ahmedabad",
+      result: "Sem 4: 64%",
+      period: "Postgraduate",
+    },
+    {
+      degree: "Bachelor of Computer Applications (BCA)",
+      status: "2021 – 2024",
+      institution: "Shri V. J. Modha College of IT, Porbandar — Bhakta Kavi Narsinh Mehta University, Junagadh",
+      result: "82%",
+      period: "Undergraduate",
+    },
+    {
+      degree: "HSC (Class 12)",
+      status: "2021",
+      institution: "Shree O. N. Modha School, Porbandar",
+      result: "52%",
+      period: "Higher Secondary",
+    },
+    {
+      degree: "SSC (Class 10)",
+      status: "2018",
+      institution: "Shree Saraswati Science School, Porbandar",
+      result: "62%",
+      period: "Secondary School",
+    },
+  ];
+
+  return (
+    <section id="education" className="py-24 sm:py-32 px-5 sm:px-8 max-w-6xl mx-auto">
+      <FadeIn y={30}>
+        <div className="text-center mb-16">
+          <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
+            Academic Background
+          </p>
+          <h2
+            className="hero-heading font-black uppercase leading-none tracking-tight"
+            style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
+          >
+            Education
+          </h2>
+        </div>
+      </FadeIn>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {educationList.map((edu, i) => (
+          <FadeIn
+            key={edu.degree}
+            delay={i * 0.1}
+            y={20}
+            className="p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-blue-500/40 transition-all"
+          >
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                {edu.period} • {edu.status}
+              </span>
+              <span className="px-3 py-1 rounded-lg text-xs sm:text-sm font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                {edu.result}
+              </span>
+            </div>
+
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide mt-2">
+              {edu.degree}
+            </h3>
+
+            <p className="text-sm text-[#D7E2EA]/70 mt-2 font-light leading-relaxed">
+              {edu.institution}
+            </p>
+          </FadeIn>
+        ))}
+      </div>
+
+      <FadeIn delay={0.4} y={20} className="mt-10">
+        <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-transparent p-6 text-center">
+          <p className="text-xs uppercase font-bold tracking-widest text-blue-400 mb-2">Languages Spoken</p>
+          <div className="flex justify-center gap-4 flex-wrap text-sm sm:text-base font-semibold text-white">
+            <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10">Hindi</span>
+            <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10">Gujarati</span>
+            <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10">English</span>
+          </div>
+        </div>
+      </FadeIn>
+    </section>
+  );
+}
+
 /* ------------------------------- ContactSection ---------------------------- */
 function ContactSection() {
   return (
@@ -1047,6 +1182,14 @@ function ContactSection() {
             >
               <Phone size={16} />
               +91 9879151961
+            </a>
+
+            <a
+              href="/resume.html"
+              className="px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 transition-all inline-flex items-center gap-2"
+            >
+              <ExternalLink size={16} />
+              View Resume
             </a>
           </div>
 
@@ -1099,6 +1242,12 @@ function Footer() {
           <a href="#projects" className="hover:text-white transition-colors">
             Projects
           </a>
+          <a href="#education" className="hover:text-white transition-colors">
+            Education
+          </a>
+          <a href="/resume.html" className="hover:text-white transition-colors">
+            Resume
+          </a>
           <a href="#contact" className="hover:text-white transition-colors">
             Contact
           </a>
@@ -1120,6 +1269,7 @@ export default function App() {
         <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
+        <EducationSection />
         <ContactSection />
       </main>
       <Footer />
