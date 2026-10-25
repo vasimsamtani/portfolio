@@ -23,6 +23,7 @@ import {
   ChevronRight,
   ZoomIn,
   X,
+  Menu,
 } from "lucide-react";
 
 /* ----------------------------- Reusable: FadeIn ---------------------------- */
@@ -125,16 +126,70 @@ function Magnet({
 
 /* ------------------------------- Navigation ------------------------------- */
 function Navbar() {
+  const [hidden, setHidden] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      // When mobile menu is open, keep header visible
+      if (mobileMenuOpen) {
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Always show near the top of the page
+      if (currentScrollY < 60) {
+        setHidden(false);
+      } else if (delta > 8 && currentScrollY > 90) {
+        // Scrolling DOWN -> smoothly hide header
+        setHidden(true);
+      } else if (delta < -8) {
+        // Scrolling UP -> smoothly reveal header
+        setHidden(false);
+      }
+
+      lastScrollY.current = currentScrollY <= 0 ? 0 : currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu on desktop resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0C0C0C]/80 border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+    <motion.header
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0C0C0C]/90 border-b border-white/5"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between">
         <a
           href="#"
+          onClick={() => setMobileMenuOpen(false)}
           className="text-base sm:text-lg font-bold tracking-wider uppercase text-white hover:text-blue-400 transition-colors"
         >
           Vasim<span className="text-blue-500">.</span>Dev
         </a>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-7 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/80">
           <a href="#about" className="hover:text-white transition-colors">
             About
@@ -156,7 +211,7 @@ function Navbar() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="/resume.html"
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/5 border border-white/15 text-white hover:bg-white/10 transition-all"
@@ -165,13 +220,88 @@ function Navbar() {
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1 px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md shadow-blue-500/20"
+            onClick={() => setMobileMenuOpen(false)}
+            className="inline-flex items-center gap-1 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md shadow-blue-500/20"
           >
             Get In Touch
           </a>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors focus:outline-none"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </div>
-    </header>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden border-t border-white/10 bg-[#0C0C0C]/95 backdrop-blur-xl px-6 py-4"
+          >
+            <nav className="flex flex-col gap-3 text-sm uppercase tracking-wider font-medium text-[#D7E2EA]/85">
+              <a
+                href="#about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#experience"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                Experience
+              </a>
+              <a
+                href="#skills"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                Skills
+              </a>
+              <a
+                href="#projects"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                Projects
+              </a>
+              <a
+                href="#education"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                Education
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1 hover:text-white transition-colors"
+              >
+                Contact
+              </a>
+              <a
+                href="/resume.html"
+                className="inline-flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/5 border border-white/15 text-white hover:bg-white/10 transition-all text-center"
+              >
+                View Full Resume
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
 
@@ -1151,15 +1281,15 @@ function EducationSection() {
 /* ------------------------------- ContactSection ---------------------------- */
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 sm:py-32 px-5 sm:px-8 max-w-5xl mx-auto">
+    <section id="contact" className="py-20 sm:py-32 px-5 sm:px-8 max-w-5xl mx-auto scroll-mt-20 sm:scroll-mt-28">
       <FadeIn y={30}>
-        <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-blue-600/10 via-transparent to-transparent p-8 sm:p-12 md:p-16 text-center relative overflow-hidden">
+        <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-blue-600/10 via-transparent to-transparent p-6 sm:p-12 md:p-16 text-center relative overflow-hidden">
           <p className="text-blue-400 uppercase tracking-widest text-xs sm:text-sm font-semibold mb-2">
             Get In Touch
           </p>
           <h2
             className="hero-heading font-black uppercase leading-none tracking-tight mb-6"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}
+            style={{ fontSize: "clamp(2rem, 7vw, 5rem)" }}
           >
             Let&apos;s Build Together
           </h2>
@@ -1167,35 +1297,35 @@ function ContactSection() {
             Have a project in mind, an opportunity to discuss, or want to collaborate on Android apps, UI/UX design, or Zoho &amp; AI workflows? Feel free to reach out.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
             <a
               href="mailto:vasimsamtani940@gmail.com"
-              className="px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all inline-flex items-center gap-2"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-xs sm:text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2 break-all sm:break-normal"
             >
-              <Mail size={16} />
+              <Mail size={16} className="shrink-0" />
               vasimsamtani940@gmail.com
             </a>
 
             <a
               href="tel:+919879151961"
-              className="px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-sm border border-white/20 text-white hover:bg-white/10 transition-all inline-flex items-center gap-2"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-xs sm:text-sm border border-white/20 text-white hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2"
             >
-              <Phone size={16} />
+              <Phone size={16} className="shrink-0" />
               +91 9879151961
             </a>
 
             <a
               href="/resume.html"
-              className="px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 transition-all inline-flex items-center gap-2"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-full font-semibold uppercase tracking-widest text-xs sm:text-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2"
             >
-              <ExternalLink size={16} />
+              <ExternalLink size={16} className="shrink-0" />
               View Resume
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[#D7E2EA]/70">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#D7E2EA]/70">
             <div className="inline-flex items-center gap-1.5">
-              <MapPin size={16} className="text-blue-400" />
+              <MapPin size={16} className="text-blue-400 shrink-0" />
               <span>Ahmedabad, Gujarat, India</span>
             </div>
             <a
@@ -1204,7 +1334,7 @@ function ContactSection() {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <ExternalLink size={16} className="text-blue-400" />
+              <ExternalLink size={16} className="text-blue-400 shrink-0" />
               LinkedIn Profile
             </a>
             <a
@@ -1213,7 +1343,7 @@ function ContactSection() {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <ExternalLink size={16} className="text-blue-400" />
+              <ExternalLink size={16} className="text-blue-400 shrink-0" />
               GitHub Profile
             </a>
           </div>
@@ -1226,29 +1356,29 @@ function ContactSection() {
 /* ---------------------------------- Footer --------------------------------- */
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#08080A] text-[#D7E2EA] px-5 sm:px-8 py-10">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-[#D7E2EA]/60">
+    <footer className="border-t border-white/10 bg-[#08080A] text-[#D7E2EA] px-5 sm:px-8 pt-10 pb-16 sm:py-10">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left text-xs sm:text-sm text-[#D7E2EA]/60">
         <p>© {new Date().getFullYear()} Vasim Samtani. All rights reserved.</p>
-        <div className="flex items-center gap-6">
-          <a href="#about" className="hover:text-white transition-colors">
+        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-6 gap-y-3">
+          <a href="#about" className="hover:text-white transition-colors py-1">
             About
           </a>
-          <a href="#experience" className="hover:text-white transition-colors">
+          <a href="#experience" className="hover:text-white transition-colors py-1">
             Experience
           </a>
-          <a href="#skills" className="hover:text-white transition-colors">
+          <a href="#skills" className="hover:text-white transition-colors py-1">
             Skills
           </a>
-          <a href="#projects" className="hover:text-white transition-colors">
+          <a href="#projects" className="hover:text-white transition-colors py-1">
             Projects
           </a>
-          <a href="#education" className="hover:text-white transition-colors">
+          <a href="#education" className="hover:text-white transition-colors py-1">
             Education
           </a>
-          <a href="/resume.html" className="hover:text-white transition-colors">
+          <a href="/resume.html" className="hover:text-white transition-colors py-1">
             Resume
           </a>
-          <a href="#contact" className="hover:text-white transition-colors">
+          <a href="#contact" className="hover:text-white transition-colors py-1">
             Contact
           </a>
         </div>
